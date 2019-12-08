@@ -39,10 +39,11 @@ DEFAULT_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'django_extensions',
 ]
 LOCAL_APPS = [
     'bangla',
-    'english'
+    'english',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
