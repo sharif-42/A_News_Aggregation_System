@@ -1,0 +1,136 @@
+{% load staticfiles %}
+<html>
+	<head>
+		<title>News Bangladesh</title>
+		<link rel="stylesheet" href="{% static 'css/home.css'%}">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+		* {
+		    box-sizing: border-box;
+		}
+		.columnn1 {
+		    float: left;
+		    width: 73%;
+		    padding-left: 1%;
+
+		}
+		.columnn2 {
+		    float: right;
+		    width: 25%;
+		    padding-left: 1%;
+
+		}
+		/* Clear floats after the columns */
+		.row:after {
+		    content: "";
+		    display: table;
+		    clear: both;
+		}
+		</style>
+
+
+	</head>
+
+	<body>
+		<div class="header">
+			<a id="logo" href="{% url 'bangla/home'%}">
+            <img src="{% static 'images/logo.jpg'%}" alt="logo">
+	            <span style = "color:#56d8da" >
+	            	<h2 style = "font-size:50px">News Bangladesh
+	            	</h2>
+	            </span>
+        	</a>
+
+
+				<div class="navbar">
+					<a href="{% url 'bangla/home'%}">Home</a>
+					<div class="dropdown">
+					  	<button class="dropbtn">NewsPapers <i class="fa fa-caret-down"></i>
+		    			</button>
+		    			<div class="dropdown-content">
+		    				  <a href="http://www.prothomalo.com" target="blank">Prothom Alo</a>
+						      <a href="https://bangla.bdnews24.com/" target="blank">BDnews24</a>
+						      <a href="https://www.thedailystar.net/bangla" target="blank">DailyStar</a>
+						      <a href="https://bangla.dhakatribune.com/" target="blank">DhakaTribune</a>
+						      <a href="https://www.bbc.com/bengali" target="blank">BBC Bangla</a>
+						      <a href="http://www.kalerkantho.com/" target="blank">Kaler kantha</a>
+						      <a href="https://www.jugantor.com/" target="blank">Jugantor</a>
+						      <a href="http://www.dailyjanakantha.com/" target="blank">Jonokantha</a>
+						    </div>
+					</div>
+					<div class="dropdown">
+						<button class="dropbtn">Category <i class="fa fa-caret-down"></i>
+						</button>
+						<div class="dropdown-content">
+							<a href="">English</a>
+							<a href="{% url 'bangla/home'%}">Bangla</a>
+						</div>
+					</div>
+						<a href="">Sports</a>
+
+						<a href="">National</a>
+						<a href="">International</a>
+						<a href="">Politics</a>
+						<a href="">Entertainment</a>
+						<a href="">Technology</a>
+						<a href="">About Us</a>
+
+				</div>
+		</div>
+
+		<div class="row">
+
+			<div class="columnn1">
+				<div class="content">
+				{% block conten%}
+				<h1 style="font-size: 50px">{{h1}}</h1>
+					{% for p in post %}
+				          <h2>
+
+				          	<div class="tooltip">
+				          			<a href="{{p.url}}" target="_blank">{{p.headline}}
+				          				<strong>({{p.news_paper_name}},{{p.publish_time}})</strong>
+				          			</a>
+
+				          	</div>
+				          </h2>
+				    {% endfor %}
+				  {% endblock %}
+
+				</div>
+			</div>
+
+			<div class="columnn2">
+				<div class="content">
+					{% block content%}
+					<h1 style="font-size: 50px">{{h2}}</h1>
+
+						{% for p in pst %}
+					          <h2>
+
+					          	<div class="tooltip" style="font-size: 20px">
+					          			<a href="{{p.url}}" target="_blank">{{p.title}}
+					          				<strong>({{p.author}})</strong>
+					          			</a>
+					          			<!--<span class="tooltiptext">{{p.title}}</span>-->
+					          	</div>
+					          </h2>
+					    {% endfor %}
+					   {% endblock %}
+				</div>
+			</div>
+		</div>
+
+
+		<div class="footer">
+			<img src="{% static 'images/logo.jpg'%}" alt="logo">
+
+	        <!--<img src="img/avatar.jpeg" alt="Footer Logo">-->
+	        <span>News Bangladesh<br>Copyright &copy; 2018-3010 </span>
+
+		</div>
+
+
+
+	</body>
+</html>
