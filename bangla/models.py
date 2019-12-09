@@ -1,6 +1,9 @@
 from django.db import models
 
+from bangla.web_scrapped_files.breaking_news import BreakingNews
 from bangla.web_scrapped_files.sports_news import SportsNews
+from bangla.web_scrapped_files.national_news import NationalNews
+from bangla.web_scrapped_files.most_read_news import MostReadNews
 
 
 class BanglaNewsManager(models.Manager):
@@ -18,6 +21,51 @@ class BanglaNewsManager(models.Manager):
         ]
         BanglaNews.objects.bulk_create(objs)
 
+    def insert_national_news(self):
+        national_news = NationalNews()
+        news = national_news.get_national_news()
+        objs = [
+            BanglaNews(
+                news_paper_name=n[2],
+                headline=n[0],
+                url=n[1],
+                news_category='National',
+            )
+            for n in news
+        ]
+        BanglaNews.objects.bulk_create(objs)
+
+    def insert_most_read_news(self):
+        most_read_news = MostReadNews()
+        news = most_read_news.get_most_read_news()
+        print(news)
+        objs = [
+            BanglaNews(
+                news_paper_name=n[2],
+                headline=n[0],
+                url=n[1],
+                news_category='Most Read',
+            )
+            for n in news
+        ]
+        print("done")
+        BanglaNews.objects.bulk_create(objs)
+
+    def insert_breaking_news(self):
+        breaking_news = BreakingNews()
+        news = breaking_news.get_breaking_news()
+        print(news)
+        objs = [
+            BanglaNews(
+                news_paper_name=n[2],
+                headline=n[0],
+                url=n[1],
+                news_category='Breaking News',
+            )
+            for n in news
+        ]
+        print("done")
+        BanglaNews.objects.bulk_create(objs)
 
 class BanglaNews(models.Model):
     MOST_READ = 'Most Read'

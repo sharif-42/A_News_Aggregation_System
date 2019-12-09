@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('home/', views.Home.as_view(), name="bangla/home"),
-    # path('national/', views.national, name="bangla/national"),
+    path('national/', views.NationalNewsApi.as_view(), name="bangla/national"),
     path('sports/', views.SportsApi.as_view(), name="bangla/sports"),
     # path('politics/', views.politics, name="bangla/politics"),
     # path('technology/', views.technology, name="bangla/technology"),

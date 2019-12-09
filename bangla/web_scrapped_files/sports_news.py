@@ -36,6 +36,6 @@ class SportsNews:
                 break
             l += 1
             url = news.find('a')['href']
-            txt = news.find('a').text[2:-1]
+            txt = news.find('a').text[1:-1]
             self.news.append((txt, url, 'যুগান্তর'))
         return self.news
