@@ -8,7 +8,18 @@ then we show all the information to our website including the summary for each a
 We use Beautifulsoup4 for collecting news and for producing summary we use NLTK module for summarizing the news content 
 and Django and Django Rest framework as Backend.  
 
-### For successfully run the project follow the bellow commands
+### For working properly follow the bellow commands
 ~~~~
+install Python 3.7 and then create a virtualenv then run the following
 pip install -r requirements.txt
 ~~~~
+
+## Used Tools
+1. Python. 
+2. Django.
+3. DJango Rest Framework.
+4. Beautifulsoup.
+5. NLTK
+6. HTML
+7. CSS
+8. Bootstrap
