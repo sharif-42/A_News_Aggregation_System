@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 <html>
 	<head>
 		<title>News Bangladesh</title>
@@ -66,9 +66,9 @@
 							<a href="{% url 'bangla/home'%}">Bangla</a>
 						</div>
 					</div>
-						<a href="">Sports</a>
+						<a href="{% url 'bangla/sports'%}">Sports</a>
 
-						<a href="">National</a>
+						<a href="{% url 'bangla/national'%}">National</a>
 						<a href="">International</a>
 						<a href="">Politics</a>
 						<a href="">Entertainment</a>

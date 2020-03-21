@@ -24,7 +24,7 @@ class SportsApi(APIView):
     template_name = 'home.html'
 
     def get(self,request):
-        #BanglaNews.objects.insert_sports_news()
+        BanglaNews.objects.insert_sports_news()
         post = BanglaNews.objects.filter(news_category = 'Sports')
         h1 = "Sports News"
         h2 = "Most Read News"
@@ -35,7 +35,7 @@ class NationalNewsApi(APIView):
     template_name = 'home.html'
 
     def get(self,request):
-        #BanglaNews.objects.insert_national_news()
+        BanglaNews.objects.insert_national_news()
         national_news = BanglaNews.objects.filter(news_category = 'National')
         #national_news = BanglaNews.objects.filter(news_category = 'National')
         h1 = "National News"
