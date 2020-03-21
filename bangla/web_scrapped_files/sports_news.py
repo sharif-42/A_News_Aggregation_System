@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 class SportsNews:
     def __init__(self):
+        print("Sports News Calling")
         self.news = []
 
     def get_bdnews_sports_news(self):

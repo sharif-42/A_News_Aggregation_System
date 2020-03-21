@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from bangla.models import BanglaNews
+from bangla import tasks
 
 
 class Home(APIView):
@@ -14,7 +15,7 @@ class Home(APIView):
     def get(self, request):
         #BanglaNews.objects.insert_sports_news()
         mst = BanglaNews.objects.filter(news_category = 'Sports')
-        post = BanglaNews.objects.all()
+        post = BanglaNews.objects.all().order_by('publish_time')
         h1 = "সর্বশেষ খবর"
         h2 = "সর্বাধিক পঠিত"
         return Response({'h1':h1,'h2':h2,'post':post,'pst':mst}, status=status.HTTP_200_OK)
@@ -24,8 +25,9 @@ class SportsApi(APIView):
     template_name = 'home.html'
 
     def get(self,request):
-        BanglaNews.objects.insert_sports_news()
-        post = BanglaNews.objects.filter(news_category = 'Sports')
+        # celery task
+        tasks.get_sports_news.delay()
+        post = BanglaNews.objects.filter(news_category = 'Sports').order_by('publish_time')
         h1 = "Sports News"
         h2 = "Most Read News"
         return Response({'h1':h1,'h2':h2,'post':post,'post':post}, status=status.HTTP_200_OK)
@@ -35,8 +37,8 @@ class NationalNewsApi(APIView):
     template_name = 'home.html'
 
     def get(self,request):
-        BanglaNews.objects.insert_national_news()
-        national_news = BanglaNews.objects.filter(news_category = 'National')
+        tasks.get_national_news.delay()   #celery task
+        national_news = BanglaNews.objects.filter(news_category = 'National').order_by('-publish_time')
         #national_news = BanglaNews.objects.filter(news_category = 'National')
         h1 = "National News"
         h2 = "Most Read News"
@@ -48,7 +50,7 @@ class MostReadNewsApi(APIView):
 
     def get(self,request):
         #BanglaNews.objects.insert_national_news()
-        national_news = BanglaNews.objects.filter(news_category = 'National')
+        national_news = BanglaNews.objects.filter(news_category = 'National').order_by('-publish_time')
         #national_news = BanglaNews.objects.filter(news_category = 'National')
         h1 = "National News"
         h2 = "Most Read News"

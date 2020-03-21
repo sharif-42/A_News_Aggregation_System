@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 class NationalNews:
     def __init__(self):
+        print("National News Calling")
         self.news = []
 
     def get_bdnews_sports_news(self):
@@ -42,7 +43,7 @@ class NationalNews:
                 break
             l += 1
             url = news.find('a')['href']
-            txt = news.find('a').text[1:-1]
+            txt = news.find('a').text
             self.news.append((txt, url, 'যুগান্তর'))
 
         return self.news
